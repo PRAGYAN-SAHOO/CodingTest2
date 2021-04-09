@@ -19,7 +19,7 @@ public class Seat {
 		Map<String,Double>  map= new HashMap<>();
 			map.put("Suspension", 500D);
 			map.put("NoSuspension", 200D);
-		return map.get(getSeatType());
+		return map.get(seatType);
 	}
 	
 }

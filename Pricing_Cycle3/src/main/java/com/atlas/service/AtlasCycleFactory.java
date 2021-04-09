@@ -30,7 +30,7 @@ public class AtlasCycleFactory {
 		Double spokesPrice = wheels.getSpokes().getSpokesPrice();
 		Double tubePrice = wheels.getTube().getTubePrice();
 //		Double tyrePrice = wheels.getTyre().getTyrePrice(env.getProperty("TyreType"));
-		Double tyrePrice = wheels.getTyre().getTyrePrice1(env.getProperty("TyreType"),env.getProperty("dateOfPricing"));
+		Double tyrePrice = wheels.getTyre().getTyrePriceByTyreTypeAndDate(env.getProperty("TyreType"),12);
 		Double wheelPrice=rimPrice+spokesPrice+tubePrice+tyrePrice;
 		Double handlePrice = new HandleBar().getHandlePrice(env.getProperty("handleType"));
 		Double cyclePrice=breakPrice+chainPrice+framePrice+wheelPrice+handlePrice;

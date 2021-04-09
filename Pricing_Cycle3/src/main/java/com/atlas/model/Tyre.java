@@ -32,151 +32,48 @@ public class Tyre {
 	/*
 	 * static{ map.put("tubeLess",300D); map.put("withTubes", 200D); }
 	 */
-	public Double getTyrePriceByTyreTypeAndDate(String tyreType,Integer monthNumber){
-		
-		
-		if(monthNumber!=12) {
-			map.put("tubeLess", 300D);
-			map.put("withTube",200D);
-			
-		}
-		else {
-			map.put("tubeLess", 350D);
-			map.put("withTube",250D);
-			
-		}
-			
-	return map.get(tyreType);
-		
-			
-		
-		
-	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public Double getTyrePriceByTyreTypeAndDate(String tyreType, Integer monthNumber) {
 
-	public int getMonth(String date) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String str_date_1 = date;
-
-		LocalDate local_date = LocalDate.parse(str_date_1, formatter);
-
-		System.out.println(local_date);
-		return local_date.getMonthValue();
-	}
-
-	public Double getPriceByTyreType(String date) {
-
-		int monthNumber = getMonth(date);
-		System.out.println("monthNumber  :: " + monthNumber);
 		if (monthNumber != 12) {
 			map.put("tubeLess", 300D);
-			map.put("withTubes", 200D);
+			map.put("withTube", 200D);
+
 		} else {
 			map.put("tubeLess", 350D);
-			map.put("withTubes", 250D);
+			map.put("withTube", 250D);
+
 		}
-		return null;
-	}
-	  
-	  public Double getTyrePrice(String tyreType) {
-		  return map.get(getTyreType());
-	  }
+
+		return map.get(tyreType);
+
+	} 
 	 
-	public Double getTyrePrice1(String tyreType,String date) {
-		Map<String,Double>  map= new HashMap<>();
-		int monthNumber=getMonth(getPricingDate());
-		System.out.println("monthNumber  :: "+monthNumber);
-		if (monthNumber!=12 ) {
-			map.put("tubeLess", 300D);
-			map.put("withTubes", 200D);
-		}else {
-			map.put("tubeLess", 350D);
-			map.put("withTubes", 250D);
-		}
-		return map.get(getTyreType());
-	}
+	
+	/*
+	 * public int getMonth(String date) { DateTimeFormatter formatter =
+	 * DateTimeFormatter.ofPattern("dd-MM-yyyy"); String str_date_1 = date;
+	 * 
+	 * LocalDate local_date = LocalDate.parse(str_date_1,formatter);
+	 * 
+	 * System.out.println(local_date); return local_date.getMonthValue(); }
+	 */
+	/*
+	 * public Double getPriceByTyreType(String date) {
+	 * 
+	 * int monthNumber = getMonth(date); System.out.println("monthNumber  :: " +
+	 * monthNumber); if (monthNumber != 12) { map.put("tubeLess", 300D);
+	 * map.put("withTubes", 200D); } else { map.put("tubeLess", 350D);
+	 * map.put("withTubes", 250D); } return null; }
+	 * 
+	 * public Double getTyrePrice(String tyreType) { return map.get(tyreType); }
+	 * 
+	 * public Double getTyrePrice1(String tyreType,String date) { Map<String,Double>
+	 * map= new HashMap<>(); int monthNumber=getMonth(getPricingDate());
+	 * System.out.println("monthNumber  :: "+monthNumber); if (monthNumber!=12 ) {
+	 * map.put("tubeLess", 300D); map.put("withTubes", 200D); }else {
+	 * map.put("tubeLess", 350D); map.put("withTubes", 250D); } return
+	 * map.get(tyreType); }
+	 */
 
 }

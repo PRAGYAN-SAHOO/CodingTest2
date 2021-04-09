@@ -1,4 +1,5 @@
 package com.atlas.runner;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,16 +19,15 @@ import com.atlas.model.Wheels;
 import com.atlas.service.AtlasCycle;
 
 @Component
-public class PricingCycleRunner implements ApplicationRunner,Runnable {
+public class PricingCycleRunner implements ApplicationRunner, Runnable {
 
 	@Autowired
 	Environment env;
 
 	@Override
-	public void  run(ApplicationArguments args) throws Exception {
+	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("PricingCycleRunner.run()");
 
-		
 		System.out.println("PricingCycleRunner.run()");
 		Double breakPrice = new Breaks().getBreakPrice(args.getOptionValues("breakType").get(0));
 		Double chainPrice = new Chain().getChainPrice();
@@ -38,7 +38,7 @@ public class PricingCycleRunner implements ApplicationRunner,Runnable {
 					{
 						this.setRimPrice(1000d);
 					}
-					
+
 				});
 				this.setSpokes(new Spokes() {
 					{
@@ -50,7 +50,7 @@ public class PricingCycleRunner implements ApplicationRunner,Runnable {
 						this.setTubePrice(400d);
 					}
 				});
-				this.setTyre(new  Tyre() {
+				this.setTyre(new Tyre() {
 					{
 						this.setTyreType("tubeLess");
 						this.setPricingDate("");
@@ -62,21 +62,19 @@ public class PricingCycleRunner implements ApplicationRunner,Runnable {
 		Double spokesPrice = wheels.getSpokes().getSpokesPrice();
 		Double tubePrice = wheels.getTube().getTubePrice(); //
 //		Double tyrePrice = wheels.getTyre().getTyrePrice(env.getProperty("TyreType"));
-		Double tyrePrice = wheels.getTyre().getTyrePriceByTyreTypeAndDate(env.getProperty("TyreType"),12);
+		Double tyrePrice = wheels.getTyre().getTyrePriceByTyreTypeAndDate(env.getProperty("TyreType"), 12);
 
 		// Double
 		// tyrePrice=wheels.getTyre().getTyrePrice1(args.getOptionValues("TyreType").get
 		// (0), args.getOptionValues("dateOfPricing").get(0));
 		Double wheelPrice = rimPrice + spokesPrice + tubePrice + tyrePrice;
 		Double handlePrice = new HandleBar().getHandlePrice(args.getOptionValues("handleType").get(0));
-		Double cyclePrice= breakPrice + chainPrice + framePrice + wheelPrice + handlePrice;
+		Double cyclePrice = breakPrice + chainPrice + framePrice + wheelPrice + handlePrice;
 		System.out.println("cyclePrice :: " + cyclePrice);
-		//System.out.println(prepareNewCycle());
-		
+		System.out.println(prepareNewCycle());
+
 	}
-	
-	
-	
+
 	
 	public Double getCyclePrice() {
 		Double breakPrice = new Breaks().getBreakPrice(env.getProperty("breakType"));
@@ -92,10 +90,10 @@ public class PricingCycleRunner implements ApplicationRunner,Runnable {
 		Double tubePrice = wheels.getTube().getTubePrice();
 		Double seatPrice = new Seat().getSeatPrice(env.getProperty("seatType"));
 
-		// Double tyrePrice =
-		wheels.getTyre().getTyrePrice(env.getProperty("TyreType"));
-		Double tyrePrice = wheels.getTyre().getTyrePrice1(env.getProperty("TyreType"),
-				env.getProperty("dateOfPricing"));
+		 //Double tyrePrice =
+		//wheels.getTyre().getTyreType(env.getProperty("TyreType"));
+		//Double tyrePrice = wheels.getTyre().getTyrePriceByTyreTypeAndDate(env.getProperty("TyreType")12);
+		Double tyrePrice = wheels.getTyre().getTyrePriceByTyreTypeAndDate(env.getProperty("TyreType"), 12);		
 		Double wheelPrice = rimPrice + spokesPrice + tubePrice + tyrePrice;
 		Double handlePrice = new HandleBar().getHandlePrice(env.getProperty("handleType"));
 		Double cyclePrice = breakPrice + chainPrice + framePrice + wheelPrice + handlePrice + seatPrice;
@@ -127,7 +125,7 @@ public class PricingCycleRunner implements ApplicationRunner,Runnable {
 		Double seatPrice = seat.getSeatPrice(env.getProperty("seatType"));
 		
 		//		Double tyrePrice = wheels.getTyre().getTyrePrice(env.getProperty("TyreType"));
-		Double tyrePrice = wheels.getTyre().getTyrePrice1(env.getProperty("TyreType"),env.getProperty("dateOfPricing"));
+		Double tyrePrice = wheels.getTyre().getTyrePriceByTyreTypeAndDate(env.getProperty("TyreType"),12);
 		Double wheelPrice=rimPrice+spokesPrice+tubePrice+tyrePrice;
 		HandleBar handleBar = new HandleBar();
 		Double handlePrice = handleBar.getHandlePrice(env.getProperty("handleType"));
@@ -137,7 +135,8 @@ public class PricingCycleRunner implements ApplicationRunner,Runnable {
 		System.out.println("wheelPrice  :: "+wheelPrice);
 		System.out.println("seatPrice  :: "+seatPrice);
 		System.out.println("handlePrice  :: "+handlePrice);
-		new  AtlasCycle() {
+		
+		new AtlasCycle() {
 			{
 				setBreaks(breaks);
 				setChain(chain);
@@ -146,13 +145,14 @@ public class PricingCycleRunner implements ApplicationRunner,Runnable {
 				setSeat(seat);
 			}
 		};
+		 
 		return null;
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
